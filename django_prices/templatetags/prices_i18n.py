@@ -69,18 +69,18 @@ def format_price(value, currency, html=False, normalize=False):
 def gross(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.gross, price.currency, html, normalize)
-    return currencyfmt(price.gross, price.currency)
+    return price.gross
 
 
 @register.simple_tag
 def net(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.net, price.currency, html, normalize)
-    return currencyfmt(price.net, "HUF")
+    return price.net
 
 
 @register.simple_tag
 def tax(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.tax, price.currency, html, normalize)
-    return currencyfmt(price.tax, "HUF")
+    return price.tax
