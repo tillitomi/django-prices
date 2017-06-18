@@ -55,14 +55,13 @@ def format_price(value, currency, html=False, normalize=False):
     if value.normalize().as_tuple().exponent < 0:
         normalize = False
     pattern = change_pattern(pattern, currency, normalize)
-    pattern = pattern.replace('.00','')
 
     if html:
         pattern = re.sub(
             '(\xa4+)', '<span class="currency">\\1</span>', pattern)
     result = format_currency(
         value, currency, pattern, locale=locale_code,
-        currency_digits=False)
+        currency_digits=(not normalize))
     return mark_safe(result)
 
 
@@ -70,18 +69,19 @@ def format_price(value, currency, html=False, normalize=False):
 def gross(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.gross, price.currency, html, normalize)
-    return 111
+    return currencyfmt(price.gross, settings.DEFAULT_CURRENCY)
 
 
 @register.simple_tag
 def net(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.net, price.currency, html, normalize)
-    return price.net
+    return currencyfmt(price.net, settings.DEFAULT_CURRENCY)
 
 
 @register.simple_tag
 def tax(price, html=False, normalize=False):
     if html or normalize:
         return format_price(price.tax, price.currency, html, normalize)
-    return price.tax
+    return currencyfmt(price.tax, settings.DEFAULT_CURRENCY)
+
