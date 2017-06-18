@@ -56,6 +56,8 @@ def format_price(value, currency, html=False, normalize=False):
         normalize = False
     pattern = change_pattern(pattern, currency, normalize)
 
+    pattern = pattern.replace('.00', '')
+
     if html:
         pattern = re.sub(
             '(\xa4+)', '<span class="currency">\\1</span>', pattern)
