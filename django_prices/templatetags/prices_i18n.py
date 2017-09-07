@@ -60,8 +60,8 @@ def format_price(value, currency, html=False, normalize=False):
         pattern = re.sub(
             '(\xa4+)', '<span class="currency">\\1</span>', pattern)
     result = format_currency(
-        value, currency, pattern, locale=locale_code,
-        currency_digits=(not normalize))
+        value, currency, format=u'#,##0\xa0¤', locale=locale_code,
+        currency_digits=False)
     return mark_safe(result)
 
 
