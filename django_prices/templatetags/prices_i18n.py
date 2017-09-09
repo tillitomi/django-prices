@@ -55,6 +55,8 @@ def format_price(value, currency, html=False, normalize=False):
     if value.normalize().as_tuple().exponent < 0:
         normalize = False
     pattern = change_pattern(pattern, currency, normalize)
+    pattern = u'#,##00\xa4'
+
 
     if html:
         pattern = re.sub(
