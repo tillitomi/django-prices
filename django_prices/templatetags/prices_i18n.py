@@ -72,9 +72,8 @@ def format_price(value, currency, html=False, normalize=False):
 
 @register.simple_tag
 def gross(price, html=False, normalize=False):
-    if html or normalize:
-        return format_price(price.gross, price.currency, html, normalize)
-    return currencyfmt(price.gross, price.currency)
+    return format_price(price.gross, price.currency, html, normalize)
+
 
 
 @register.simple_tag
