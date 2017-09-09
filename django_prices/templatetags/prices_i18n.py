@@ -52,8 +52,11 @@ def format_price(value, currency, html=False, normalize=False):
         locale = Locale.parse(locale_code)
     currency_format = locale.currency_formats.get('standard')
     pattern = currency_format.pattern
+
     if value.normalize().as_tuple().exponent < 0:
         normalize = False
+
+    normalize = False
     pattern = change_pattern(pattern, currency, normalize)
     pattern = u'#,##00\xa4'
 
