@@ -65,7 +65,7 @@ def format_price(value, currency, html=False, normalize=False):
         pattern = re.sub(
             '(\xa4+)', '<span class="currency">\\1</span>', pattern)
     result = format_currency(
-        value, 'HUF', u'#,##00\xa0\xa4',
+        value, 'HUF', u'###00\xa0\xa4',
         currency_digits=normalize)
     return mark_safe(result)
 
